@@ -10,6 +10,7 @@ import com.silanis.esl.sdk.PackageStatus;
 import com.silanis.esl.sdk.SigningStatus;
 import com.silanis.esl.sdk.io.Files;
 
+// download transactions documents and Evidence Summary
 public class StatusAndDownload {
   public static final String CONFIG_PATH = "/home/john/Documents/OSS/config.properties";
   public static final String PACKAGE_TITLE = "Status-And-Download";
@@ -46,6 +47,7 @@ public class StatusAndDownload {
     }
   }
 
+  // read account details from config file
   public static Properties readPropertiesFile(String fileName) throws IOException {
     FileInputStream fis = null;
     Properties prop = null;

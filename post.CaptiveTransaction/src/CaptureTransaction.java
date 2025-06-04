@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+// request signature freehand or file
 public class CaptureTransaction {
   public static final String CONFIG_PATH = "/home/john/Documents/OSS/config.properties";
   public static final String FILE_PATH = "/home/john/Documents/OSS//docs/capture_transaction.pdf";
@@ -27,19 +28,21 @@ public class CaptureTransaction {
 
     // Build the DocumentPackage object
     DocumentPackage pkg = newPackageNamed(PACKAGE_TITLE)
-        .describedAs("Capture package created")
-        .withSigner(newSignerWithEmail(SIGNER)
-            .withFirstName(prop.getProperty("FORENAME"))
-            .withLastName("Signer_one")
-            .withCustomId("Capture"))
-        .withDocument(newDocumentWithName(PACKAGE_TITLE)
-            .fromStream(new FileInputStream(FILE_PATH), DocumentType.PDF)
-            .withSignature(captureFor(SIGNER)
-                // position signature
-                .onPage(0)
-                .atPosition(300, 200)
-                .setFromFile(true)))
-        .build();
+      .describedAs("Capture package created")
+      .withSigner(newSignerWithEmail(SIGNER)
+        .withFirstName(prop.getProperty("FORENAME"))
+        .withLastName("Signer_one")
+        .withCustomId("Capture"))
+      .withDocument(newDocumentWithName(PACKAGE_TITLE)
+          .fromStream(new FileInputStream(FILE_PATH), DocumentType.PDF)
+          .withSignature(captureFor(SIGNER)
+            // position signature
+            .onPage(0)
+            .atPosition(300, 200)
+            .setFromFile(true)
+        )
+      )
+    .build();
 
     PackageId packageId = eslClient.createPackageOneStep(pkg);
     eslClient.sendPackage(packageId);
@@ -53,7 +56,7 @@ public class CaptureTransaction {
     System.out.println("Link for " + whom + ":\n" + aSigner);
   }
 
-  // Read account details from file
+  // read account details from config file
   public static Properties readPropertiesFile(String fileName) throws IOException {
     FileInputStream fis = null;
     Properties prop = null;

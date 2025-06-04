@@ -74,7 +74,7 @@ public class PDFTagTransaction {
     System.out.println("Link for " + whom + ":\n" + aSigner);
   }
 
-  // Read account details from file
+  // read account details from config file
   public static Properties readPropertiesFile(String fileName) throws IOException {
     FileInputStream fis = null;
     Properties prop = null;

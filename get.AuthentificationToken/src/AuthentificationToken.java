@@ -36,6 +36,7 @@ public class AuthentificationToken {
     // System.out.println("Signer Token: " + signerAuthToken);
   }
 
+  // read account details from config file
   public static Properties readPropertiesFile(String fileName) throws IOException {
     FileInputStream fis = null;
     Properties prop = null;

@@ -12,12 +12,9 @@ import com.silanis.esl.sdk.builder.SignerBuilder;
 
 public class UsingClientApp {
   public static final String PACKAGE_TITLE = "UsingClientApp: " + LocalDateTime.now();
-  public static final String[] BASE_URL = { "https://apps.esignlive.eu", "https://sandbox.esignlive.com" }; // EU, US2
-  public static final String[] CLIENT_ID = { "1966727ef1854242b10abf2a67f", "196612ef7352028a20b962b9505" }; // EU, US2
-  public static final String[] CLIENT_SECRET = {
-      "6879647261fe954761b1390194dbe6deae2209a250f34d0e49b5733a97e509b4d63733ce10",
-      "68796472619c9176732ea0c3de0cf1d8f019491fa2cc29cfcc6cf492dc4108f003c228ddcc" 
-      }; // EU, US2
+  public static final String BASE_URL = "https://sandbox.esignlive.com";
+  public static final String CLIENT_ID = "19745c2be1dcc337467bd1d37de";
+  public static final String CLIENT_SECRET = "687964726191b0387b9df1aad66de00460659c460f31dbd4cab43151ff6925630c79855088";
   public static final String FILEPATH = "/home/john/Documents/OSS/docs/sampleAgreement.pdf";
   public static final String[] SIGNERS = { "john.cyclist.mcguinness+signer@gmail.com",
       "john.cyclist.mcguinness+reviewer@gmail.com" };
@@ -26,12 +23,12 @@ public class UsingClientApp {
   public static void main(String[] args) {
     @SuppressWarnings("unchecked")
     EslClient eslClient = new EslClient(ApiTokenConfig.newBuilder()
-        .clientAppId(CLIENT_ID[0])
-        .clientAppSecret(CLIENT_SECRET[0])
-        .baseUrl(BASE_URL[0])
+        .clientAppId(CLIENT_ID)
+        .clientAppSecret(CLIENT_SECRET)
+        .baseUrl(BASE_URL)
         .tokenType(TokenType.OWNER)
         .build(),
-        BASE_URL[0] + "/api", false, null, false, new HashMap());
+        BASE_URL + "/api", false, null, false, new HashMap());
 
     // Build the DocumentPackage object
     DocumentPackage documentPackage = PackageBuilder
